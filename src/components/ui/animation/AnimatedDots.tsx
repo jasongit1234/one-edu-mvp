@@ -1,13 +1,14 @@
 import React from 'react'
 
+// Flexible animated dots component for loading, typing, and progress indicators
 interface AnimatedDotsProps {
-  variant?: 'progress' | 'typing' | 'loading'
-  count?: number
-  size?: 'sm' | 'md' | 'lg'
-  color?: string
-  spacing?: 'tight' | 'normal' | 'wide'
-  className?: string
-  label?: string
+  variant?: 'progress' | 'typing' | 'loading'  // Animation style
+  count?: number                               // Number of dots
+  size?: 'sm' | 'md' | 'lg'                   // Dot size
+  color?: string                              // Dot color theme
+  spacing?: 'tight' | 'normal' | 'wide'       // Space between dots
+  className?: string                          // Additional CSS classes
+  label?: string                              // Optional label for typing indicator
 }
 
 const AnimatedDots: React.FC<AnimatedDotsProps> = ({
@@ -19,6 +20,7 @@ const AnimatedDots: React.FC<AnimatedDotsProps> = ({
   className = '',
   label
 }) => {
+  // Get Tailwind classes for dot sizes based on viewport
   const getSizeClasses = () => {
     switch (size) {
       case 'sm':
@@ -32,6 +34,7 @@ const AnimatedDots: React.FC<AnimatedDotsProps> = ({
     }
   }
 
+  // Get Tailwind classes for dot spacing with responsive design
   const getSpacingClasses = () => {
     switch (spacing) {
       case 'tight':
@@ -45,6 +48,7 @@ const AnimatedDots: React.FC<AnimatedDotsProps> = ({
     }
   }
 
+  // Get Tailwind classes for dot colors using theme colors
   const getColorClasses = () => {
     switch (color) {
       case 'purple':
@@ -64,6 +68,7 @@ const AnimatedDots: React.FC<AnimatedDotsProps> = ({
     }
   }
 
+  // Get animation class based on variant type
   const getAnimation = () => {
     switch (variant) {
       case 'typing':
@@ -75,6 +80,7 @@ const AnimatedDots: React.FC<AnimatedDotsProps> = ({
     }
   }
 
+  // Generate animated dots with staggered delays
   const renderDots = () => {
     const dots = []
     const sizeClasses = getSizeClasses()
@@ -82,6 +88,7 @@ const AnimatedDots: React.FC<AnimatedDotsProps> = ({
     const animation = getAnimation()
 
     for (let i = 0; i < count; i++) {
+      // Stagger animation timing for wave effect
       const delay = variant === 'typing' ? i * 0.1 : i * 0.2
       dots.push(
         <div
@@ -95,8 +102,10 @@ const AnimatedDots: React.FC<AnimatedDotsProps> = ({
     return dots
   }
 
+  // Combine all spacing and custom classes
   const containerClasses = `flex items-center justify-center ${getSpacingClasses()} ${className}`
 
+  // Special layout for typing indicator with label
   if (variant === 'typing' && label) {
     return (
       <div className="flex items-center space-x-2">
@@ -108,6 +117,7 @@ const AnimatedDots: React.FC<AnimatedDotsProps> = ({
     )
   }
 
+  // Default layout for progress and loading indicators
   return (
     <div className={containerClasses}>
       {renderDots()}

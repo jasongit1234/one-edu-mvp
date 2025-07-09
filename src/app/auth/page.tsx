@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { useForm, useTimeout } from '@/hooks'
 import { LoadingSpinner, ProtectedRoute, Button, AlertMessage, FormInput, AuthHeader, AuthCard } from '@/components'
@@ -12,6 +13,7 @@ interface AuthFormData extends Record<string, unknown> {
 }
 
 const AuthPage = () => {
+  const router = useRouter()
   const [isLogin, setIsLogin] = useState(true)
   const [message, setMessage] = useState('')
   const { signIn, signUp, sessionError, loading: authLoading } = useAuth()
@@ -38,6 +40,11 @@ const AuthPage = () => {
 
       if (error) {
         throw new Error(error.message)
+      }
+
+      // If signup was successful, redirect to role selection
+      if (!isLogin && !error) {
+        router.push('/role-selection')
       }
     }
   })
@@ -68,8 +75,6 @@ const AuthPage = () => {
     setValue('password', '')
     setValue('confirmPassword', '')
   }
-
-  // Routing is now handled by ProtectedRoute component
 
   if (loading || authLoading) {
     return <LoadingSpinner message={isLogin ? "Signing in..." : "Creating account..."} />

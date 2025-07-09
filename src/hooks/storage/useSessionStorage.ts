@@ -1,9 +1,11 @@
 import { useState, useCallback } from 'react'
 
+// Hook for managing a single value in sessionStorage with type safety
 export const useSessionStorage = <T>(key: string, initialValue: T) => {
+  // Initialize state from sessionStorage or fallback to initialValue
   const [storedValue, setStoredValue] = useState<T>(() => {
     if (typeof window === 'undefined') {
-      return initialValue
+      return initialValue // Handle SSR case
     }
     try {
       const item = sessionStorage.getItem(key)
@@ -14,6 +16,7 @@ export const useSessionStorage = <T>(key: string, initialValue: T) => {
     }
   })
 
+  // Update both state and sessionStorage
   const setValue = useCallback((value: T | ((val: T) => T)) => {
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value
@@ -27,6 +30,7 @@ export const useSessionStorage = <T>(key: string, initialValue: T) => {
     }
   }, [key, storedValue])
 
+  // Remove item from sessionStorage and reset state
   const removeValue = useCallback(() => {
     try {
       setStoredValue(initialValue)
@@ -39,14 +43,15 @@ export const useSessionStorage = <T>(key: string, initialValue: T) => {
   }, [key, initialValue])
 
   return {
-    value: storedValue,
-    setValue,
-    removeValue
+    value: storedValue,   // Current stored value
+    setValue,             // Update value
+    removeValue          // Remove value and reset
   }
 }
 
 // Specialized hook for managing multiple session storage keys with a prefix
 export const useSessionStorageKeys = (prefix: string) => {
+  // Remove all items that start with the given prefix
   const clearAllWithPrefix = useCallback(() => {
     if (typeof window === 'undefined') return
 
@@ -62,6 +67,7 @@ export const useSessionStorageKeys = (prefix: string) => {
     }
   }, [prefix])
 
+  // Get all stored items that start with the given prefix
   const getAllWithPrefix = useCallback(() => {
     if (typeof window === 'undefined') return {}
 
@@ -86,7 +92,7 @@ export const useSessionStorageKeys = (prefix: string) => {
   }, [prefix])
 
   return {
-    clearAllWithPrefix,
-    getAllWithPrefix
+    clearAllWithPrefix,  // Clear all matching items
+    getAllWithPrefix     // Get all matching items
   }
 } 

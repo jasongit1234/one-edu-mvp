@@ -2,13 +2,17 @@ import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useNavigation } from './useNavigation'
 
+// Hook for managing user role selection and related navigation
 export const useRoleSelection = () => {
+  // Get auth context and navigation utilities
   const { user, loading: authLoading, setUserRole } = useAuth()
   const { navigateTo, isNavigating, navigationMessage } = useNavigation()
+  
+  // Track role update status
   const [isUpdating, setIsUpdating] = useState(false)
   const [updatingRole, setUpdatingRole] = useState<'parent' | 'child' | null>(null)
 
-  // Auto-redirect based on authentication and role
+  // Handle automatic navigation based on auth state and role
   useEffect(() => {
     if (!authLoading && !user) {
       navigateTo('/auth', 'Redirecting to sign in...')
@@ -24,6 +28,7 @@ export const useRoleSelection = () => {
     }
   }, [authLoading, user, navigateTo])
 
+  // Handle role selection and navigate to appropriate dashboard
   const selectRole = async (role: 'parent' | 'child') => {
     if (!user || isUpdating) {
       return
@@ -51,12 +56,12 @@ export const useRoleSelection = () => {
   }
 
   return {
-    user,
-    loading: authLoading,
-    isUpdating,
-    updatingRole,
-    isNavigating,
-    navigationMessage,
-    selectRole
+    user,             // Current user object
+    loading: authLoading, // Auth loading state
+    isUpdating,       // Role update in progress
+    updatingRole,     // Role being set
+    isNavigating,     // Navigation in progress
+    navigationMessage, // Current navigation message
+    selectRole        // Role selection handler
   }
 } 

@@ -1,11 +1,13 @@
 import { useEffect } from 'react'
 
+// Configuration options for form data synchronization
 interface UseFormSyncOptions<T> {
-  data: T | null | undefined
-  setValue: (key: keyof T, value: unknown) => void
-  syncMap?: Partial<Record<keyof T, (value: unknown) => unknown>>
+  data: T | null | undefined                                    // Data to sync with form
+  setValue: (key: keyof T, value: unknown) => void             // Form field updater
+  syncMap?: Partial<Record<keyof T, (value: unknown) => unknown>> // Value transformers
 }
 
+// Hook for synchronizing external data with form
 export const useFormSync = <T extends Record<string, unknown>>({
   data,
   setValue,
@@ -27,22 +29,23 @@ export const useFormSync = <T extends Record<string, unknown>>({
   }, [data, setValue, syncMap])
 }
 
-// Specialized hook for profile syncing
+// Interface for profile data structure
 interface ProfileData {
-  name?: string
-  age?: number
-  interests?: string
+  name?: string       // User's name
+  age?: number        // User's age
+  interests?: string  // User's interests
 }
 
+// Specialized hook for syncing profile data with form
 export const useProfileFormSync = <T extends Record<string, unknown>>(
   profile: ProfileData | null | undefined,
   setValue: (key: keyof T, value: unknown) => void
 ) => {
   useEffect(() => {
     if (profile) {
-      setValue('name' as keyof T, profile.name || '')
-      setValue('age' as keyof T, profile.age?.toString() || '')
-      setValue('interests' as keyof T, profile.interests || '')
+      setValue('name' as keyof T, profile.name || '')          // Sync name
+      setValue('age' as keyof T, profile.age?.toString() || '') // Sync age as string
+      setValue('interests' as keyof T, profile.interests || '') // Sync interests
     }
   }, [profile, setValue])
 } 

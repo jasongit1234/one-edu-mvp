@@ -49,8 +49,10 @@ interface AuthContextType {
 }
 
 // =================== CONTEXT ===================
+// Main authentication context that manages user sessions, profiles, and database interactions
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
+// Custom hook to access auth context throughout the app
 export const useAuth = () => {
   const context = useContext(AuthContext)
   if (context === undefined) {
@@ -60,16 +62,21 @@ export const useAuth = () => {
 }
 
 // =================== PROVIDER ===================
+// Main authentication provider component that handles session persistence and user state
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // State
+  // Track both Supabase and custom user data
   const [user, setUserState] = useState<User | null>(null)
   const [supabaseUser, setSupabaseUser] = useState<SupabaseUser | null>(null)
+  
+  // Session management states
   const [session, setSession] = useState<Session | null>(null)
-  const [childProfile, setChildProfileState] = useState<ChildProfile | null>(null)
   const [loading, setLoading] = useState(true)
   const [sessionError, setSessionError] = useState<string | null>(null)
+  
+  // Child profile state for educational features
+  const [childProfile, setChildProfileState] = useState<ChildProfile | null>(null)
 
-  // Wrapped state setters with logging
+  // Wrapped setter with debug logging for user state changes
   const setUser = useCallback((newUser: User | null) => {
     console.log('🔄 AuthContext: User state changing from:', user?.email, 'to:', newUser?.email)
     console.log('🔄 AuthContext: User role changing from:', user?.role, 'to:', newUser?.role)
@@ -95,6 +102,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [user, supabaseUser, session, loading, sessionError, childProfile])
 
+  // Clear all session data on logout or errors
   const clearSessionStorage = useCallback(() => {
     if (typeof window === 'undefined') return
     
@@ -106,7 +114,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     })
   }, [])
 
-  // =================== SESSION STORAGE FUNCTIONS ===================
+  // Load cached user data from sessionStorage to minimize database calls
   const loadUserFromSession = useCallback((supabaseUserId: string) => {
     if (typeof window === 'undefined') return false
 
@@ -145,6 +153,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // Cache user data in sessionStorage for faster subsequent loads
   const saveUserToSession = useCallback((supabaseUserId: string, userData: User, childProfileData?: ChildProfile) => {
     if (typeof window === 'undefined') return
 
@@ -162,7 +171,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [])
 
-  // =================== DATABASE FUNCTIONS ===================
+  // Ensure user record exists in our database after Supabase auth
   const ensureUserRecord = useCallback(async (supabaseUser: SupabaseUser) => {
     try {
       const { data: existingUser } = await supabase
@@ -193,6 +202,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [])
 
+  // Fetch complete user profile from database
   const fetchUserData = useCallback(async (supabaseUserId: string) => {
     try {
       console.log('🔍 AuthContext: Fetching user data from database for:', supabaseUserId)

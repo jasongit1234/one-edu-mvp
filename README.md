@@ -1,36 +1,160 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ONE EDU MVP - Setup Instructions
 
-## Getting Started
+## Overview
+ONE EDU is an AI-powered educational platform designed to help children aged 8-13 learn real-world life skills through voice-enabled AI mentoring.
 
-First, run the development server:
+## Prerequisites
+- Node.js (v20 or later)
+- npm or yarn
+- Supabase account
+- OpenAI API key
+
+## Quick Start
+
+### 1. Install Dependencies
+```bash
+npm install
+```
+
+### 2. Set up Supabase
+
+1. Create a new project at [supabase.com](https://supabase.com)
+2. Go to Settings > API to find your project URL and anon key
+3. Create a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+OPENAI_API_KEY=your-openai-api-key
+```
+
+**⚠️ Important:** For AI Mentor Chat functionality, you'll need an **OpenAI API key**. Get yours at [platform.openai.com](https://platform.openai.com/api-keys)
+
+### 3. Set up Database Tables
+
+Go to your Supabase SQL Editor and run the database schema:
+
+**📋 Go to:** https://supabase.com/dashboard/project/YOUR_PROJECT_ID/sql
+
+**Copy and paste the contents of the `database/schema.sql` file and run.**
+
+### 4. Configure Authentication
+
+1. Go to Authentication > Settings in your Supabase dashboard
+2. Turn off "Enable email confirmations" for development (optional)
+3. Set up any additional authentication providers if needed
+
+### 5. Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                         # Next.js 13+ App Router
+│   ├── api/                    # API routes
+│   ├── auth/                   # Authentication page
+│   ├── child-onboarding/      # Child profile creation
+│   ├── role-selection/        # Role selection (parent/child)
+│   ├── parent-dashboard/      # Parent management dashboard
+│   ├── mentor-chat/          # AI mentor chat interface
+│   ├── xp-dashboard/         # XP and achievements
+│   └── layout.tsx            # Root layout with providers
+├── components/
+│   ├── development/          # Development tools
+│   ├── features/            # Feature-specific components
+│   ├── form/               # Form components
+│   ├── layout/            # Layout components
+│   └── ui/                # Reusable UI components
+├── contexts/
+│   └── AuthContext.tsx    # Authentication context
+├── hooks/                # Custom hooks
+│   ├── app/             # Application-specific hooks
+│   ├── core/           # Core utility hooks
+│   ├── form/          # Form-related hooks
+│   ├── storage/       # Storage hooks
+│   └── ui/           # UI-related hooks
+└── lib/              # Core utilities
+    ├── supabase.ts  # Supabase client
+    ├── openai.ts    # OpenAI integration
+    └── mock-xp-system.ts # Temporary XP system
+```
 
-## Learn More
+## User Flow
 
-To learn more about Next.js, take a look at the following resources:
+1. **Landing Page** (`/`) - Welcome and feature overview
+2. **Authentication** (`/auth`) - Login/signup with email
+3. **Role Selection** (`/role-selection`) - Choose parent or child role
+4. **Child Onboarding** (`/child-onboarding`) - Create child profile
+5. **Parent Dashboard** (`/parent-dashboard`) - Manage children and progress (Comming soon)
+6. **Mentor Chat** (`/mentor-chat`) - AI mentor chat
+7. **XP Dashboard** (`/xp-dashboard`) - Track achievements and skills
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+✅ **Authentication & Profiles:**
+- Email-based authentication with Supabase
+- Role-based access (parent/child)
+- Child profile management
+- Session persistence with sessionStorage
 
-## Deploy on Vercel
+✅ **AI Mentor Chat:**
+- Voice-enabled chat with OpenAI
+- Child-safe content filtering
+- Personalized responses based on profile
+- Real-time chat with typing indicators
+- Emoji and GIF support
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+✅ **XP System:**
+- Achievement tracking
+- Skill progression
+- Visual progress indicators
+- Badge collection system
+- Daily streaks
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+✅ **Parent Features:**
+- Comming soon
+
+## Development Features
+
+- TypeScript strict mode
+- ESLint configuration
+- Tailwind CSS with PostCSS
+- Development debugging tools
+- Mobile-responsive design
+- Loading states for all actions
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Authentication Issues**
+   - Verify Supabase credentials in `.env.local`
+   - Check browser console for errors
+   - Ensure proper RLS policies
+
+2. **Database Errors**
+   - Confirm schema installation
+   - Check RLS policies
+   - Verify user permissions
+
+3. **Chat Issues**
+   - Validate OpenAI API key
+   - Check rate limits
+   - Verify network connectivity
+
+### Environment Setup
+Ensure `.env.local` is configured with all required variables and excluded from version control.
+
+## Next Steps
+
+1. Implement voice chat persistence
+2. Add parent insights dashboard
+3. Expand skill tracking system
+4. Enhance achievement mechanics
+5. Add learning resource library 

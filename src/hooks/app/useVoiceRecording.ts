@@ -1,9 +1,12 @@
 import { useState, useEffect, useCallback } from 'react'
 
+// Hook for managing voice recording functionality using Web Speech API
 export const useVoiceRecording = () => {
+  // Track recording state and browser support
   const [isRecording, setIsRecording] = useState(false)
   const [isSupported, setIsSupported] = useState(false)
 
+  // Check browser support for Web Speech API
   useEffect(() => {
     // Check if voice recording is supported
     if (typeof window !== 'undefined' && 'webkitSpeechRecognition' in window) {
@@ -11,6 +14,7 @@ export const useVoiceRecording = () => {
     }
   }, [])
 
+  // Start voice recording and handle transcription
   const startRecording = useCallback((onResult: (transcript: string) => void) => {
     if (!isSupported) {
       alert('Voice recording is not supported in your browser. Please use Chrome or Edge.')
@@ -24,22 +28,26 @@ export const useVoiceRecording = () => {
 
     setIsRecording(true)
 
+    // Initialize speech recognition with Chrome's API
     // @ts-expect-error - webkitSpeechRecognition is not in TypeScript types
     const recognition = new window.webkitSpeechRecognition()
-    recognition.continuous = false
-    recognition.interimResults = false
-    recognition.lang = 'en-US'
+    recognition.continuous = false     // Stop after single utterance
+    recognition.interimResults = false // Only return final results
+    recognition.lang = 'en-US'        // Set language to English
 
+    // Handle recording start
     recognition.onstart = () => {
       setIsRecording(true)
     }
 
+    // Process speech recognition results
     recognition.onresult = (event: { results: Array<Array<{ transcript: string }>> }) => {
       const transcript = event.results[0][0].transcript
       onResult(transcript)
       setIsRecording(false)
     }
 
+    // Handle recognition errors
     recognition.onerror = (event: { error: string }) => {
       console.error('Speech recognition error:', event.error)
       setIsRecording(false)
@@ -48,6 +56,7 @@ export const useVoiceRecording = () => {
       }
     }
 
+    // Clean up when recognition ends
     recognition.onend = () => {
       setIsRecording(false)
     }
@@ -55,14 +64,15 @@ export const useVoiceRecording = () => {
     recognition.start()
   }, [isSupported, isRecording])
 
+  // Stop current recording session
   const stopRecording = useCallback(() => {
     setIsRecording(false)
   }, [])
 
   return {
-    isRecording,
-    isSupported,
-    startRecording,
-    stopRecording
+    isRecording,    // Current recording state
+    isSupported,    // Browser support status
+    startRecording, // Start recording function
+    stopRecording   // Stop recording function
   }
 } 

@@ -1,11 +1,11 @@
 import OpenAI from 'openai'
 
-// Initialize OpenAI client
+// Initialize OpenAI client with API key from environment
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 })
 
-// Astra's personality and guidelines for child interactions
+// Core system prompt defining Astra's personality and interaction guidelines
 export const ASTRA_SYSTEM_PROMPT = `You are Astra, a young mentor who cares about kids. You're like a cool older sibling - someone who's learned a lot but is still figuring things out.
 
 ## Communication Style - KEEP IT SHORT:
@@ -35,15 +35,15 @@ export const ASTRA_SYSTEM_PROMPT = `You are Astra, a young mentor who cares abou
 
 Be genuine, be yourself, and connect naturally with kids!`
 
-// Interface for chat message
+// Type definition for chat messages with role, content, and metadata
 export interface ChatMessage {
-  role: 'user' | 'assistant' | 'system'
-  content: string
-  timestamp: Date
-  type?: 'text' | 'gif'
+  role: 'user' | 'assistant' | 'system'  // Message sender type
+  content: string                        // Message text content
+  timestamp: Date                        // Message timestamp
+  type?: 'text' | 'gif'                 // Message content type
 }
 
-// Function to get AI response from GPT-4o
+// Main function to get AI responses with child context
 export async function getAIResponse(
   messages: ChatMessage[],
   childName?: string,
@@ -51,7 +51,7 @@ export async function getAIResponse(
   childInterests?: string
 ): Promise<string> {
   try {
-    // Prepare system prompt with child context
+    // Build personalized system prompt with child's context
     let systemPrompt = ASTRA_SYSTEM_PROMPT
     
     if (childName || childAge || childInterests) {
@@ -62,7 +62,7 @@ export async function getAIResponse(
       systemPrompt += `\n\nUse this information to personalize your responses and make them more relevant to the child.`
     }
 
-    // Prepare messages for OpenAI
+    // Format messages for OpenAI API
     const openaiMessages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
       { role: 'system', content: systemPrompt },
       ...messages.map(msg => ({
@@ -71,13 +71,14 @@ export async function getAIResponse(
       }))
     ]
 
+    // Get AI completion with specific parameters for child-friendly responses
     const response = await openai.chat.completions.create({
       model: 'gpt-4o',
       messages: openaiMessages,
-      max_tokens: 100, // Much shorter to force brevity
-      temperature: 0.8, // Slightly higher for more personality variation
-      presence_penalty: 0.4, // Encourage more diverse topics
-      frequency_penalty: 0.2, // Allow some repetition for natural speech patterns
+      max_tokens: 100,     // Short responses for better engagement
+      temperature: 0.8,    // More creative and varied responses
+      presence_penalty: 0.4, // Encourage topic exploration
+      frequency_penalty: 0.2, // Allow some natural repetition
     })
 
     return response.choices[0]?.message?.content || 'Sorry, I didn\'t quite understand that. Could you try again? 😊'

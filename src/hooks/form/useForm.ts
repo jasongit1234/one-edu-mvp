@@ -1,13 +1,15 @@
 import { useState, useCallback, useEffect } from 'react'
 
+// Configuration options for form management
 interface UseFormOptions<T> {
-  initialValues: T
-  validate?: (values: T) => string | null
-  onSubmit: (values: T) => Promise<void>
-  syncData?: T | null | undefined
-  syncMap?: Partial<Record<keyof T, (value: unknown) => unknown>>
+  initialValues: T                                    // Initial form state
+  validate?: (values: T) => string | null            // Optional validation function
+  onSubmit: (values: T) => Promise<void>             // Form submission handler
+  syncData?: T | null | undefined                    // External data to sync with
+  syncMap?: Partial<Record<keyof T, (value: unknown) => unknown>> // Transform synced data
 }
 
+// Hook for managing form state, validation, and submission
 export const useForm = <T extends Record<string, unknown>>({
   initialValues,
   validate,
@@ -15,18 +17,22 @@ export const useForm = <T extends Record<string, unknown>>({
   syncData,
   syncMap = {}
 }: UseFormOptions<T>) => {
+  // Core form state
   const [values, setValues] = useState<T>(initialValues)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
+  // Update single form field
   const setValue = useCallback((key: keyof T, value: unknown) => {
     setValues(prev => ({ ...prev, [key]: value }))
   }, [])
 
+  // Update multiple form fields
   const setAllValues = useCallback((newValues: T) => {
     setValues(newValues)
   }, [])
 
+  // Reset form to initial state
   const reset = useCallback(() => {
     setValues(initialValues)
     setError('')
@@ -50,6 +56,7 @@ export const useForm = <T extends Record<string, unknown>>({
     }
   }, [syncData, setValue, syncMap])
 
+  // Handle form submission with validation
   const handleSubmit = useCallback(async (e?: React.FormEvent) => {
     e?.preventDefault()
     setLoading(true)
@@ -76,13 +83,13 @@ export const useForm = <T extends Record<string, unknown>>({
   }, [values, validate, onSubmit])
 
   return {
-    values,
-    loading,
-    error,
-    setError,
-    setValue,
-    setAllValues,
-    reset,
-    handleSubmit
+    values,        // Current form values
+    loading,       // Submission state
+    error,         // Error message
+    setError,      // Set error manually
+    setValue,      // Update field value
+    setAllValues,  // Update all values
+    reset,         // Reset form state
+    handleSubmit   // Submit handler
   }
 } 

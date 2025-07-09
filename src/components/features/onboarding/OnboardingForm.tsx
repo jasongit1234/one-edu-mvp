@@ -37,7 +37,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({
       <div className={`grid grid-cols-1 ${isMobile ? 'gap-4' : 'md:grid-cols-2 gap-4 sm:gap-6'}`}>
         {/* Enhanced Name Field */}
         <div className="relative">
-          <label htmlFor="name" className={`block ${isMobile ? 'text-sm' : 'text-xs sm:text-sm'} font-bold text-gray-800 mb-2 ${isMobile ? '' : 'sm:mb-3'} flex items-center`}>
+          <label htmlFor="name" className={`block ${isMobile ? 'text-sm' : 'text-xs sm:text-sm'} font-bold text-gray-600 dark:text-gray-400 mb-2 ${isMobile ? '' : 'sm:mb-3'} flex items-center`}>
             <span className={`${isMobile ? 'text-lg mr-2' : 'text-lg sm:text-xl mr-1 sm:mr-2'}`}>👋</span>
             What&apos;s your name? <span className="text-red-500 ml-1">*</span>
           </label>
@@ -48,7 +48,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({
               value={name}
               onChange={(e) => onNameChange(e.target.value)}
               required
-              className={`w-full ${isMobile ? 'px-3 py-3' : 'px-3 sm:px-4 md:px-6 py-3 sm:py-4'} border-2 border-purple-200 rounded-xl ${isMobile ? '' : 'sm:rounded-2xl'} focus:ring-2 ${isMobile ? '' : 'sm:focus:ring-4'} focus:ring-purple-300 focus:border-purple-400 ${isMobile ? 'text-sm' : 'text-sm sm:text-base md:text-lg'} font-medium transition-all duration-300 hover:border-purple-300 bg-white/80 backdrop-blur-sm shadow-lg cursor-pointer`}
+              className={`w-full ${isMobile ? 'px-3 py-3' : 'px-3 sm:px-4 md:px-6 py-3 sm:py-4'} border-2 border-purple-200 dark:border-purple-400/30 rounded-xl ${isMobile ? '' : 'sm:rounded-2xl'} focus:ring-2 ${isMobile ? '' : 'sm:focus:ring-4'} focus:ring-purple-300 focus:border-purple-400 ${isMobile ? 'text-sm' : 'text-sm sm:text-base md:text-lg'} font-medium transition-all duration-300 hover:border-purple-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-lg cursor-pointer text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400`}
               placeholder="Enter your amazing name! ✨"
               maxLength={50}
             />
@@ -60,7 +60,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({
 
         {/* Enhanced Age Field */}
         <div className="relative">
-          <label htmlFor="age" className={`block ${isMobile ? 'text-sm' : 'text-xs sm:text-sm'} font-bold text-gray-800 mb-2 ${isMobile ? '' : 'sm:mb-3'} flex items-center`}>
+          <label htmlFor="age" className={`block ${isMobile ? 'text-sm' : 'text-xs sm:text-sm'} font-bold text-gray-600 dark:text-gray-400 mb-2 ${isMobile ? '' : 'sm:mb-3'} flex items-center`}>
             <span className={`${isMobile ? 'text-lg mr-2' : 'text-lg sm:text-xl mr-1 sm:mr-2'}`}>🎂</span>
             How old are you? <span className="text-red-500 ml-1">*</span>
           </label>
@@ -70,11 +70,11 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({
               value={age}
               onChange={(e) => onAgeChange(e.target.value)}
               required
-              className={`w-full ${isMobile ? 'px-3 py-3' : 'px-3 sm:px-4 md:px-6 py-3 sm:py-4'} border-2 border-purple-200 rounded-xl ${isMobile ? '' : 'sm:rounded-2xl'} focus:ring-2 ${isMobile ? '' : 'sm:focus:ring-4'} focus:ring-purple-300 focus:border-purple-400 ${isMobile ? 'text-sm' : 'text-sm sm:text-base md:text-lg'} font-medium transition-all duration-300 hover:border-purple-300 bg-white/80 backdrop-blur-sm shadow-lg appearance-none ${isMobile ? '' : 'custom-select'} cursor-pointer`}
+              className={`w-full ${isMobile ? 'px-3 py-3' : 'px-3 sm:px-4 md:px-6 py-3 sm:py-4'} border-2 border-purple-200 dark:border-purple-400/30 rounded-xl ${isMobile ? '' : 'sm:rounded-2xl'} focus:ring-2 ${isMobile ? '' : 'sm:focus:ring-4'} focus:ring-purple-300 focus:border-purple-400 ${isMobile ? 'text-sm' : 'text-sm sm:text-base md:text-lg'} font-medium transition-all duration-300 hover:border-purple-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-lg appearance-none ${isMobile ? '' : 'custom-select'} cursor-pointer text-gray-800 dark:text-gray-100`}
             >
-              <option value="" className="bg-purple-50 text-gray-600">Select your age 🎈</option>
+              <option value="" className="bg-purple-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400">Select your age 🎈</option>
               {Array.from({ length: 6 }, (_, i) => i + 8).map(ageOption => (
-                <option key={ageOption} value={ageOption} className="bg-white text-gray-800 hover:bg-purple-100 py-2">
+                <option key={ageOption} value={ageOption} className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 hover:bg-purple-100 dark:hover:bg-purple-900/50 py-2">
                   🎂 {ageOption} years old
                 </option>
               ))}
@@ -88,7 +88,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({
 
       {/* Enhanced Interests Section */}
       <div className="relative">
-        <label className={`block ${isMobile ? 'text-sm' : 'text-xs sm:text-sm'} font-bold text-gray-800 mb-3 ${isMobile ? '' : 'sm:mb-4'} flex items-center`}>
+        <label className={`block ${isMobile ? 'text-sm' : 'text-xs sm:text-sm'} font-bold text-gray-600 dark:text-gray-400 mb-3 ${isMobile ? '' : 'sm:mb-4'} flex items-center`}>
           <span className={`${isMobile ? 'text-lg mr-2' : 'text-lg sm:text-xl mr-1 sm:mr-2'}`}>🎨</span>
           What are you interested in? (Click to select your favorites!)
         </label>
@@ -107,7 +107,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({
                     className={`${isMobile ? 'px-2 py-2' : 'px-2 sm:px-3 py-2'} rounded-lg ${isMobile ? '' : 'sm:rounded-xl'} text-xs font-bold transition-all duration-300 transform hover:scale-105 shadow-md cursor-pointer ${
                       isSelected
                         ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-purple-300 animate-pulse'
-                        : 'bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-gradient-to-r hover:from-purple-100 hover:to-pink-100 border-2 border-purple-200 hover:border-purple-300'
+                        : 'bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-purple-100 hover:to-pink-100 dark:hover:from-purple-900/50 dark:hover:to-pink-900/50 border-2 border-purple-200 dark:border-purple-400/30 hover:border-purple-300'
                     }`}
                   >
                     {interest}
@@ -123,7 +123,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({
               <textarea
                 value={interests}
                 onChange={(e) => onInterestsChange(e.target.value)}
-                className={`w-full h-full ${isMobile ? 'h-[100px]' : 'min-h-[100px] sm:min-h-[120px]'} ${isMobile ? 'px-3 py-3' : 'px-3 sm:px-4 py-3'} border-2 border-purple-200 rounded-xl ${isMobile ? '' : 'sm:rounded-2xl'} focus:ring-2 ${isMobile ? '' : 'sm:focus:ring-4'} focus:ring-purple-300 focus:border-purple-400 ${isMobile ? 'text-sm' : 'text-sm sm:text-base'} font-medium transition-all duration-300 hover:border-purple-300 bg-white/80 backdrop-blur-sm shadow-lg resize-none`}
+                className={`w-full h-full ${isMobile ? 'h-[100px]' : 'min-h-[100px] sm:min-h-[120px]'} ${isMobile ? 'px-3 py-3' : 'px-3 sm:px-4 py-3'} border-2 border-purple-200 dark:border-purple-400/30 rounded-xl ${isMobile ? '' : 'sm:rounded-2xl'} focus:ring-2 ${isMobile ? '' : 'sm:focus:ring-4'} focus:ring-purple-300 focus:border-purple-400 ${isMobile ? 'text-sm' : 'text-sm sm:text-base'} font-medium transition-all duration-300 hover:border-purple-300 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-lg resize-none text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400`}
                 placeholder="You can also type your interests here... 🌟"
                 maxLength={500}
               />
