@@ -35,7 +35,6 @@ const AchievementGallery: React.FC<AchievementGalleryProps> = ({
         <div className="mb-6 sm:mb-8">
           {/* Title Section */}
           <div className="flex items-center space-x-3 sm:space-x-4 mb-4 sm:mb-6">
-            <div className="text-3xl sm:text-4xl">🏆</div>
             <div>
               <h3 className="text-xl sm:text-2xl font-bold text-white">Achievement Gallery</h3>
               <p className="text-white/70 text-sm sm:text-base">Your legendary progress showcase</p>

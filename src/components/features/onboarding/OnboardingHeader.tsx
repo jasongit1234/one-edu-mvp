@@ -9,7 +9,7 @@ const OnboardingHeader: React.FC<OnboardingHeaderProps> = ({ isEditing, isMobile
   return (
     <div className="text-center mb-6 sm:mb-8">
       <div className="relative inline-block">
-        <div className={`${isMobile ? 'text-4xl' : 'text-4xl sm:text-5xl md:text-6xl'} mb-3 ${isMobile ? '' : 'sm:mb-4'} animate-bounce`}>🌟</div>
+        <div className={`${isMobile ? 'text-4xl' : 'text-4xl sm:text-5xl md:text-6xl'} mb-3 ${isMobile ? '' : 'sm:mb-4'} animate-bounce`}></div>
         <div className={`absolute ${isMobile ? '-top-1 -right-1 w-3 h-3' : '-top-1 sm:-top-2 -right-1 sm:-right-2 w-3 h-3 sm:w-4 sm:h-4'} bg-yellow-400 rounded-full animate-ping`}></div>
         <div className={`absolute ${isMobile ? '-bottom-1 -left-1 w-2 h-2' : '-bottom-1 sm:-bottom-2 -left-1 sm:-left-2 w-2 h-2 sm:w-3 sm:h-3'} bg-pink-400 rounded-full animate-pulse`}></div>
       </div>

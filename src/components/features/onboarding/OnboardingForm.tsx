@@ -38,7 +38,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({
         {/* Enhanced Name Field */}
         <div className="relative">
           <label htmlFor="name" className={`block ${isMobile ? 'text-sm' : 'text-xs sm:text-sm'} font-bold text-gray-600 dark:text-gray-400 mb-2 ${isMobile ? '' : 'sm:mb-3'} flex items-center`}>
-            <span className={`${isMobile ? 'text-lg mr-2' : 'text-lg sm:text-xl mr-1 sm:mr-2'}`}>👋</span>
+            <span className={`${isMobile ? 'text-lg mr-2' : 'text-lg sm:text-xl mr-1 sm:mr-2'}`}></span>
             What&apos;s your name? <span className="text-red-500 ml-1">*</span>
           </label>
           <div className="relative">
@@ -53,7 +53,6 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({
               maxLength={50}
             />
             <div className={`absolute ${isMobile ? 'right-3' : 'right-3 sm:right-4'} top-1/2 transform -translate-y-1/2 text-purple-400`}>
-              <span className={`${isMobile ? 'text-lg' : 'text-lg sm:text-xl'}`}>🌟</span>
             </div>
           </div>
         </div>
@@ -61,7 +60,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({
         {/* Enhanced Age Field */}
         <div className="relative">
           <label htmlFor="age" className={`block ${isMobile ? 'text-sm' : 'text-xs sm:text-sm'} font-bold text-gray-600 dark:text-gray-400 mb-2 ${isMobile ? '' : 'sm:mb-3'} flex items-center`}>
-            <span className={`${isMobile ? 'text-lg mr-2' : 'text-lg sm:text-xl mr-1 sm:mr-2'}`}>🎂</span>
+            <span className={`${isMobile ? 'text-lg mr-2' : 'text-lg sm:text-xl mr-1 sm:mr-2'}`}></span>
             How old are you? <span className="text-red-500 ml-1">*</span>
           </label>
           <div className="relative">
@@ -75,7 +74,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({
               <option value="" className="bg-purple-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400">Select your age 🎈</option>
               {Array.from({ length: 6 }, (_, i) => i + 8).map(ageOption => (
                 <option key={ageOption} value={ageOption} className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 hover:bg-purple-100 dark:hover:bg-purple-900/50 py-2">
-                  🎂 {ageOption} years old
+                  {ageOption} years old
                 </option>
               ))}
             </select>
@@ -89,7 +88,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({
       {/* Enhanced Interests Section */}
       <div className="relative">
         <label className={`block ${isMobile ? 'text-sm' : 'text-xs sm:text-sm'} font-bold text-gray-600 dark:text-gray-400 mb-3 ${isMobile ? '' : 'sm:mb-4'} flex items-center`}>
-          <span className={`${isMobile ? 'text-lg mr-2' : 'text-lg sm:text-xl mr-1 sm:mr-2'}`}>🎨</span>
+          <span className={`${isMobile ? 'text-lg mr-2' : 'text-lg sm:text-xl mr-1 sm:mr-2'}`}></span>
           What are you interested in? (Click to select your favorites!)
         </label>
         
@@ -147,9 +146,6 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({
           {/* Button Content */}
           <div className="relative z-10 flex items-center justify-center space-x-2">
             <span>{isEditing ? 'Update Profile' : 'Start My Adventure!'}</span>
-            <span className={`${isMobile ? 'text-xl' : 'text-xl sm:text-2xl'} animate-bounce`}>
-              {isEditing ? '🎉' : '🚀'}
-            </span>
           </div>
           
           {/* Sparkle Effects */}

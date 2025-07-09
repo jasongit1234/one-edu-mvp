@@ -108,7 +108,7 @@ const ProfilePrompt: React.FC<ProfilePromptProps> = ({
               <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                 <div className="flex items-center justify-center space-x-2 sm:space-x-3 text-white/80">
                   <div className="w-6 sm:w-8 h-6 sm:h-8 bg-purple-500/30 rounded-full flex items-center justify-center">
-                    <span className="text-xs sm:text-sm">🤖</span>
+                    <span className="text-xs sm:text-sm">🧠</span>
                   </div>
                   <span className="text-xs sm:text-sm font-medium">Chat with Astra, your AI mentor</span>
                 </div>

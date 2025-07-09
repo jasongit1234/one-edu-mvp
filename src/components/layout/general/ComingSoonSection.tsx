@@ -32,9 +32,6 @@ const ComingSoonSection: React.FC = () => {
   return (
     <div className="text-center mb-6 sm:mb-12">
       <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-4 sm:p-8 md:p-12">
-        <div className="animate-bounce mb-4 sm:mb-6">
-          <div className="text-4xl sm:text-6xl md:text-8xl mb-2 sm:mb-4">🚀</div>
-        </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 sm:mb-4">Coming Soon!</h2>
         <p className="text-sm sm:text-lg md:text-xl text-gray-600 mb-4 sm:mb-6 md:mb-8 max-w-2xl mx-auto px-2">
           We&apos;re working hard to bring you an amazing parent dashboard with comprehensive tools to manage your child&apos;s learning journey.

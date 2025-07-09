@@ -49,7 +49,7 @@ const RoleSelectionContent = React.memo(function RoleSelectionContent() {
   ]
 
   const childFeatures = [
-    { icon: '🤖', text: 'Chat with Astra mentor' },
+    { icon: '🧠', text: 'Chat with Astra mentor' },
     { icon: '🏆', text: 'Earn XP & achievements' },
     { icon: '🎮', text: 'Interactive learning' },
     { icon: '🌟', text: 'Personalized journey' }

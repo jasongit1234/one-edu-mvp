@@ -31,7 +31,6 @@ const SkillsCard: React.FC<SkillsCardProps> = ({ skillsData }) => {
       
       <div className="relative z-10">
         <div className="flex items-center space-x-3 mb-4 sm:mb-6">
-          <div className="text-2xl sm:text-3xl">🧠</div>
           <div>
             <h3 className="text-lg sm:text-xl font-bold text-white">Skills</h3>
             <p className="hidden sm:block text-white/70">Your growing abilities</p>

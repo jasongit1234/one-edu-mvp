@@ -4,7 +4,7 @@ import { FeatureCard } from '@/components'
 const FeaturesSection: React.FC = () => {
   const features = [
     {
-      icon: '🤖',
+      icon: '🧠',
       title: 'AI-Powered Learning',
       description: 'Chat with Astra, our friendly AI mentor who adapts to your child\'s learning style'
     },
@@ -14,7 +14,7 @@ const FeaturesSection: React.FC = () => {
       description: 'Natural conversations with Astra that adapt to your child\'s interests and learning style'
     },
     {
-      icon: '👨‍👩‍👧‍👦',
+      icon: '🤱',
       title: 'Parent Dashboard',
       description: 'Track progress and stay involved in your child\'s learning journey',
       className: 'sm:col-span-2 md:col-span-1'

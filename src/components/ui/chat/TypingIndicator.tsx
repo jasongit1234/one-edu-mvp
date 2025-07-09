@@ -21,7 +21,7 @@ const TypingIndicator: React.FC<TypingIndicatorProps> = ({ isMobile = false }) =
             count={3} 
             size="sm" 
             color="purple"
-            label="Thinking..."
+            label="Typing..."
           />
         </div>
       </div>

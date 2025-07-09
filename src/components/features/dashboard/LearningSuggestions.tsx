@@ -39,7 +39,6 @@ const LearningSuggestions: React.FC<LearningSuggestionsProps> = () => {
         <div className="text-center">
           <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl p-4 sm:p-6 border border-purple-400/30">
             <div className="flex items-center justify-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
-              <div className="text-2xl sm:text-3xl">🤖</div>
               <div>
                 <h4 className="text-lg sm:text-xl font-bold text-white">Ready to Learn?</h4>
                 <p className="text-white/80 text-sm sm:text-base">Astra is waiting to help you grow!</p>
@@ -51,7 +50,6 @@ const LearningSuggestions: React.FC<LearningSuggestionsProps> = () => {
               className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer"
             >
               <span className="mr-2">Chat with Astra</span>
-              <span className="animate-bounce">✨</span>
             </button>
           </div>
         </div>

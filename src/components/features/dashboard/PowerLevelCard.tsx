@@ -19,7 +19,6 @@ const PowerLevelCard: React.FC<PowerLevelCardProps> = ({ dashboardData }) => {
       <div className="relative z-10">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 sm:mb-6">
           <div className="flex items-center space-x-3 sm:space-x-4 mb-3 sm:mb-0">
-            <div className="text-3xl sm:text-4xl">⚡</div>
             <div>
               <h3 className="text-lg sm:text-xl font-bold text-white">Power Level</h3>
               <p className="hidden sm:block text-white/70">Rising to the next level!</p>

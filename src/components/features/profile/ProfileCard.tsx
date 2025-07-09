@@ -175,7 +175,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
 
           {/* Global XP Stats */}
           <div className="text-center mt-4 sm:mt-6">
-            <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">🌟</div>
             <h4 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">All-Time XP</h4>
             
             {/* Total XP Calculation */}

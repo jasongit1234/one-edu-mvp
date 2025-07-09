@@ -36,7 +36,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
             <div className="flex items-center space-x-2">
               <div className="relative">
                 <div className="w-8 h-8 bg-gradient-to-br from-purple-400 via-pink-500 to-blue-500 rounded-full flex items-center justify-center text-lg shadow-lg">
-                  🤖
+                🧠
                 </div>
                 <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border border-white shadow-sm animate-pulse"></div>
               </div>

@@ -139,7 +139,7 @@ const ChildOnboardingPage = React.memo(function ChildOnboardingPage() {
         {isEditing && <OnboardingNavigation />}
         <div className="mt-4 sm:mt-6 text-center">
           <p className="text-gray-600 text-xs sm:text-sm px-2 sm:px-0">
-            Ready to learn with your AI mentor? Let&apos;s go! ✨
+            Ready to learn with your AI mentor? Let&apos;s go!
           </p>
         </div>
       </AnimatedContainer>

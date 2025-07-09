@@ -18,7 +18,6 @@ const ChatEmptyState: React.FC<ChatEmptyStateProps> = ({ isMobile = false }) => 
 
       <h3 className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold text-gray-800 mb-2 flex items-center justify-center`}>
         Ready to chat with Astra!
-        <span className="ml-2 text-yellow-500 animate-bounce">🎉</span>
       </h3>
 
       <p className={`text-dark-600 max-w-sm ${isMobile ? 'text-sm' : 'text-base'} leading-relaxed px-4 mb-4 text-gray-600`}>
