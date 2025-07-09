@@ -5,7 +5,7 @@ interface ChatEmptyStateProps {
   isMobile?: boolean
 }
 
-const ChatEmptyState: React.FC<ChatEmptyStateProps> = ({ voiceSupported, isMobile = false }) => {
+const ChatEmptyState: React.FC<ChatEmptyStateProps> = ({ isMobile = false }) => {
   return (
     <div className="flex-1 flex flex-col items-center justify-center text-center py-8">
       <div className="relative mb-4">
